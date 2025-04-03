@@ -37,7 +37,6 @@ const TasksList = ({ appoMsg, Tasks,  methodDelete, methodEdit, methodPatch }: T
 
                                 <button className="btn btn-danger btn-sm my-1"    onClick={() => methodPatch(row.id, row.status)}><i className="las la-toggle-off"></i></button>
                                 <button className="btn btn-secondary btn-sm my-1" onClick={() => methodPatch(row.id, row.status)}><i className="las la-toggle-on"></i></button>
-                    
 
                                 <button disabled={(row.status != 'Pendiente') ? true : false}
                                     className="btn btn-dark btn-sm my-1 mx-2" onClick={() => methodEdit(row.id)}><i className="las la-pen"></i></button>
