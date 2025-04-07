@@ -4,7 +4,7 @@ URL Github pública acceso distribución React SPA:
 
 https://mauriciobarriosb.github.io/portafolio-web-task-app/dist
 
-URL Github pública acceso archivos fuente Proyecto TypeScript - React JS - API REST:
+URL Github pública acceso archivos fuente Proyecto (Tailwind 4 - TypeScript - React JS - API REST):
 
 https://github.com/MauricioBarriosB/portafolio-web-task-app
 
