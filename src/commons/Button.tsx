@@ -1,8 +1,5 @@
 import React from 'react';
 
-// ** Prop with No Event definitions :  
-// ** buttonOnClick: () => void;
-
 type ButtonTypes = {
     id: string | number;
     desc: string;

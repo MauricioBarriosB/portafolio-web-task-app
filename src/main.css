@@ -19,20 +19,53 @@
     --color-slate-950: oklch(0.129 0.042 264.695);
     --ease-fluid: cubic-bezier(0.3, 0, 0, 1);
     --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
-  }
+}
 
-  @layer components {
+@layer components {
     .typography {
-      color: var(--color-red-950);
-      a {
-        color: var(--color-blue-500);
-        &:hover {
-          color: var(--color-blue-800);
+        color: var(--color-red-950);
+
+        a {
+            color: var(--color-blue-500);
+
+            &:hover {
+                color: var(--color-blue-800);
+            }
         }
-      }
     }
-  }
+
+    .card {
+        background-color: var(--color-white);
+        border-radius: var(--rounded-lg);
+        padding: var(--spacing-6);
+        box-shadow: var(--shadow-xl);
+    }
+}
 
 html {
-    @apply bg-slate-950 text-white; 
+    @apply bg-slate-950 text-gray-200;
+}
+
+.cust-sm-btns {
+    @apply rounded-md py-1 px-2.5 mx-1 text-center text-xs text-white uppercase tracking-wide outline-none font-bold transition-all hover:bg-slate-700 cursor-pointer shadow-sm;
+}
+
+.cust-label {
+    @apply block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2;
+}
+
+.cust-input {
+    @apply appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500;
+}
+
+.cust-primary-button {
+    @apply text-white mx-2 uppercase bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cursor-pointer;
+}
+
+.cust-select {
+    @apply block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500;
+}
+
+.cust-status {
+    @apply inline-block px-2 py-1 mx-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs;
 }

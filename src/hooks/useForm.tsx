@@ -7,24 +7,23 @@ const useForm = (initialValue: object, useFormCallBack: Function) => {
 
     const [form, setform] = useState(initialValue); 
 
-    const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>  | React.ChangeEvent<HTMLTextAreaElement>) => {
+    const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>  | React.ChangeEvent<HTMLTextAreaElement> | React.ChangeEvent<HTMLSelectElement> ) => {
         const { name, value } = target;
         setform({ ...form, [name]: DOMPurify.sanitize(value) });
     }
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        
         let flagSubmit: boolean = true;
+        /*
         for (const [key, value] of Object.entries(form)) {
-
             // console.log(`* key: ${key} -> value: ${value}`);
-
             if (key.length < 4 || value.length < 4) {
                 flagSubmit = false;
                 break;
             }
         }
+        */
         useFormCallBack(flagSubmit);
     };
 
@@ -36,6 +35,7 @@ const useForm = (initialValue: object, useFormCallBack: Function) => {
         let resetKeys : Record<string, string> = {};
         for (const [key] of Object.entries(form)) resetKeys[key]  = '';
         setform(resetKeys);
+        useFormCallBack(false);
     };
 
     return {

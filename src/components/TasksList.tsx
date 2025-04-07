@@ -1,9 +1,9 @@
 interface ITasks {
     id: number;
+    title: string;
     name: string;
-    email: string;
+    priority: string;
     date: string;
-    doctor: string;
     desc: string;
     status: string;
 }
@@ -20,35 +20,40 @@ const formatDate = (date: string) => {
     return date.replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3/$2/$1');
 }
 
-const TasksList = ({ appoMsg, Tasks,  methodDelete, methodEdit, methodPatch }: TasksTypes) => {
+const TasksList = ({ appoMsg, Tasks, methodDelete, methodEdit, methodPatch }: TasksTypes) => {
     return (
-        <div className="card text-center mb-5 mt-4">
-            <div className="card-header">
-                <h5 className="mt-1"> Listado reservas solicitadas (Mantenedor CRUD) </h5>
-            </div>
-            <div className="card-body text-center">
-                {appoMsg && <p className="text-primary" style={{ marginBottom: "0" }}>{appoMsg}</p>}
-                <ul className="list-group">
-                    {Tasks.map((row) => (
-                        <li className="list-group-item d-flex justify-content-between align-items-center" key={row.id}>
-                            <span> <strong> {row.name} </strong> | {row.email} | {formatDate(row.date)} | Doctor: {row.doctor} | Descripción: {row.desc} |
-                                <strong className={'px-1 ' + (row.status == 'Pendiente' ? 'text-danger' : 'text-success')}>{row.status}</strong></span>
-                            <span>
 
-                                <button className="btn btn-danger btn-sm my-1"    onClick={() => methodPatch(row.id, row.status)}><i className="las la-toggle-off"></i></button>
-                                <button className="btn btn-secondary btn-sm my-1" onClick={() => methodPatch(row.id, row.status)}><i className="las la-toggle-on"></i></button>
+        <div className="grid xs:grid-cols-1 xs:gap-1 sm:grid-cols-1 sm:gap-1 md:grid-cols-3 md:gap-3 mx-4 mb-4">
+            {appoMsg && <p className="text-primary" style={{ marginBottom: "0" }}>{appoMsg}</p>}
 
-                                <button disabled={(row.status != 'Pendiente') ? true : false}
-                                    className="btn btn-dark btn-sm my-1 mx-2" onClick={() => methodEdit(row.id)}><i className="las la-pen"></i></button>
+            {Tasks.map((row) => (
 
-                                <button disabled={(row.status != 'Pendiente') ? true : false}
-                                    className="btn btn-danger btn-sm" onClick={() => methodDelete(row.id)}><i className="las la-trash"></i></button>
+                <div className="m-2 p-2 bg-gray-800 rounded-lg text-gray-300 shadow-md" key={row.id}>
 
-                            </span>
-                        </li>
-                    ))}
-                </ul>
-            </div>
+                    <div className="m-1 p-1 mb-4">
+                        <span className="cust-status">{row.status}</span> <span className="cust-status"> PRIORIDAD {row.priority}</span>
+                        <h2 className="mt-2 mb-2  font-bold">{row.title}</h2>
+                        <p className="text-sm">{row.desc}</p>
+
+                        <div className="mt-3">
+                            <p className="text-xs"> Asignado a: {row.name} •• Plazo entrega: {formatDate(row.date)}</p>
+                        </div>
+                    </div>
+                    <div className="flex justify-center border-t text-xs text-gray-700">
+                        <div className="pt-4 pb-2">
+
+                            {(row.status == 'Completado')
+                                ? <button className="cust-sm-btns bg-blue-800" onClick={() => methodPatch(row.id, row.status)}>Pendiente</button>
+                                : <button className="cust-sm-btns bg-green-900" onClick={() => methodPatch(row.id, row.status)}>Completado</button>
+                            }
+
+                            <button className="cust-sm-btns bg-purple-900" onClick={() => methodEdit(row.id)}>Editar</button>
+                            <button className="cust-sm-btns bg-red-900" onClick={() => methodDelete(row.id)}>Eliminar</button>
+                        </div>
+                    </div>
+                </div>
+            ))}
+
         </div>
     );
 };
